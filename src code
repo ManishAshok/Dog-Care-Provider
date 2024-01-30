@@ -1,0 +1,181 @@
+Prerequisites:
+
+//Install React Native CLI 
+npm install -g react-native-cli
+
+//Create a new React Native project
+npx react-native init DogCareProviderApp //Note: we are utilizing bash
+cd DogCareProviderApp
+
+//Install necessary dependencies
+npm install @react-navigation/native @react-navigation/stack react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/viewpager @react-native-firebase/app @react-native-firebase/auth react-native-maps react-native-vector-icons
+
+Set up Firebase:
+1: Create a Firebase project on the Firebase Console.
+2: Add an Android app to your project.
+3: Download the google-services.json file and place it in the android/app/ directory.
+
+// App.js
+
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import ServiceScreen from './screens/ServiceScreen';
+import StoreScreen from './screens/StoreScreen';
+import AppointmentScreen from './screens/AppointmentScreen';
+import ReviewsScreen from './screens/ReviewsScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import NotificationScreen from './screens/NotificationScreen';
+import UserProfileScreen from './screens/UserProfileScreen';
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Service" component={ServiceScreen} />
+      <Stack.Screen name="Store" component={StoreScreen} />
+      <Stack.Screen name="Appointment" component={AppointmentScreen} />
+      <Stack.Screen name="Reviews" component={ReviewsScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeStack} />
+        <Drawer.Screen name="Notifications" component={NotificationScreen} />
+        <Drawer.Screen name="UserProfile" component={UserProfileScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
+
+// HomeScreen.js
+
+import React from 'react';
+import { View, Text, Button } from 'react-native';
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <View>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Services"
+        onPress={() => navigation.navigate('Service')}
+      />
+      {/* Add more buttons for other sections */} // customize and expand these screens based on your project's specific needs.
+    </View>
+  );
+};
+
+export default HomeScreen;
+
+// ServiceScreen.js
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const ServiceScreen = () => {
+  return (
+    <View>
+      <Text>Service Screen</Text>
+      {/* Add components for displaying services */}
+    </View>
+  );
+};
+
+export default ServiceScreen;
+
+// StoreScreen.js
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const StoreScreen = () => {
+  return (
+    <View>
+      <Text>Store Screen</Text>
+      {/* Add components for displaying nearby stores */}
+    </View>
+  );
+};
+
+export default StoreScreen;
+
+// AppointmentScreen.js
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const AppointmentScreen = () => {
+  return (
+    <View>
+      <Text>Appointment Screen</Text>
+      {/* Add components for booking appointments */}
+    </View>
+  );
+};
+
+export default AppointmentScreen;
+
+// ReviewsScreen.js
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const ReviewsScreen = () => {
+  return (
+    <View>
+      <Text>Reviews Screen</Text>
+      {/* Add components for displaying and submitting reviews */}
+    </View>
+  );
+};
+
+export default ReviewsScreen;
+
+// NotificationScreen.js
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const NotificationScreen = () => {
+  return (
+    <View>
+      <Text>Notification Screen</Text>
+      {/* Add components for displaying notifications */}
+    </View>
+  );
+};
+
+export default NotificationScreen;
+
+// UserProfileScreen.js
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const UserProfileScreen = () => {
+  return (
+    <View>
+      <Text>User Profile Screen</Text>
+      {/* Add components for displaying and editing user profile */}
+    </View>
+  );
+};
+
+export default UserProfileScreen;
+
+
+
